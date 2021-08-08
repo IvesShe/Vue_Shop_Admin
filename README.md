@@ -2,10 +2,11 @@
 
 電商後台建構
 
-![image](./images/20210808172154.png)
+搭配ElementUI
 
 (開發中)
 
+![image](./images/20210808172154.png)
 
 # 前置工作
 
