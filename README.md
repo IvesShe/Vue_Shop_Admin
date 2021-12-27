@@ -1,807 +1,644 @@
-# Vue 電商 SuperMall
+# Vue 電商後台
 
-電商 購物網站建構
+電商後台建構
 
-Github展示(開發中)
+搭配ElementUI
 
-https://ivesshe.github.io/Vue_SuperMall/
+(開發中)
 
-![image](./images/20210726212250.png)
-# 安裝vue腳手架
+![image](./images/20210912205626.png)
 
-## Vue CLI
+# 前置工作
 
-webpack全局安裝
+這是一個前後端的完整項目
+
+前端使用Vue開發
+
+後端使用node.js開發
+
+這邊先關注在Vue開發的部分
+
+後端的部分有時間再開專案建立學習資料
+
+## 使用mysql
+
+先使用phpstudy開啟mysql
+
+(這玩意真的很方便，但儘限學習使用)
+
+![image](./images/20210808120505.png)
+
+## 使用sqlyog
+
+連接mysql並創建mydb數據庫
+
+
+![image](./images/20210808163806.png)
+
+## 執行sql
+
+![image](./images/20210808120545.png)
+## 啟動node服務器
 
 ```
-npm i webpack -g
+node app.js
 ```
 
-## 安裝Vue腳手架
+![image](./images/20210808120647.png)
+
+# 新建專案
+
+詳細內容可參考之前文檔
+
+https://github.com/IvesShe/Vue_SuperMall
+
 
 ```bash
-npm i -g @vue/cli
+vue init webpack vue_shop_admin
 ```
 
-![image](./images/20210410100532.png)
+![image](./images/20210808122246.png)
 
-# 創建項目
+![image](./images/20210808122309.png)
+
+創建完成的項目結構
+
+![image](./images/20210808122404.png)
+
+運行
 
 ```bash
-vue create supermall
+npm run dev
 ```
 
-上面安裝的是Vue CLI4的版本，如果想要按照Vue CLI2的方式初始化是不可以的，如果需要使用舊版本的vue init功能，需要全局安裝一個橋接工具
+![image](./images/20210808122646.png)
 
-```bash
-npm i -g @vue/cli-init
-```
+![image](./images/20210808122512.png)
 
-![image](./images/20210410101424.png)
+# 新增eslint --fix
 
-之後才能使用
+package.json
 
-```bash
-vue init webpack myProject
-```
 
-## 創建項目
-
-```bash
-vue create vue_supermall
-```
-
-![image](./images/20210410101424.png)
-
-
-選擇自訂安裝
-
-![image](./images/20210410102218.png)
-
-這邊其實是要拉掉Linter的預設安裝
-
-![image](./images/20210410102149.png)
-
-
-選擇使用Vue2或Vue3
-
-![image](./images/20210410102310.png)
-
-選擇package.json的方式
-
-![image](./images/20210410102625.png)
-
-最後會詢問是否將這次的設定儲存，我選擇yes，存為ives_vue2這名稱
-
-![image](./images/20210410103038.png)
-
-## 運行項目
-
-```bash
-cd vue_supermall
-npm run serve
-```
-
-運行成功
-
-![image](./images/20210410103307.png)
-
-# 安裝VSCode插件
-
-![image](./images/20210410103802.png)
-
-![image](./images/20210410115921.png)
-
-# 安裝Chrome 擴充
-
-![image](./images/20210410103917.png)
-
-方便開發
-
-![image](./images/20210410104145.png)
-
-
-# 使用css初始化文件
-
-https://github.com/necolas/normalize.css/
-
-## 參考網址
-
-https://cli.vuejs.org/zh/
-
-https://cli.vuejs.org/zh/guide/installation.html
-
-https://cli.vuejs.org/zh/guide/creating-a-project.html
-
-# 建立資料夾結構
-
-![image](./images/20210725150129.png)
-
-# 新建css
-
-normalize.css
-
-參考官網並下載
-
-https://github.com/necolas/normalize.css/
-
-base.css
-
-```css
-@import "./normalize.css";
-
-/*:root -> 获取根元素html*/
-:root {
-  --color-text: #666;
-  --color-high-text: #ff5777;
-  --color-tint: #ff8198;
-  --color-background: #fff;
-  --font-size: 14px;
-  --line-height: 1.5;
-}
-
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-  user-select: none; /* 禁止用户鼠标在页面上选中文字/图片等 */
-  -webkit-tap-highlight-color: transparent; /* webkit是苹果浏览器引擎，tap点击，highlight背景高亮，color颜色，颜色用数值调节 */
-  background: var(--color-background);
-  color: var(--color-text);
-  /* rem vw/vh */
-  width: 100vw;
-}
-
-a {
-  color: var(--color-text);
-  text-decoration: none;
-}
-
-
-.clear-fix::after {
-  clear: both;
-  content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  visibility: hidden;
-}
-
-.clear-fix {
-  zoom: 1;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
-}
-
-
-```
-
-# 新建vue.config.js
-
-```js
-module.exports = {
-    configureWebpack: {
-        resolve: {
-            alias: {
-                'assets': '@/assets',
-                'common': '@/common',
-                'components': '@/components',
-                'network': '@/network',
-                'views': '@/views',
-            }
-        }
-    }
-}
-```
-
-# 新建.editorconfig
-
-統一代碼風格
-
-```
-root = true
-
-[*]
-charset = utf-8
-indent_style = space
-indent_size = 2
-end_of_line = lf
-insert_final_newline = true
-trim_trailing_whitespace = true
-
-```
-
-# 安裝router
-
-```bash
-npm i vue-router --save
-```
-
-![image](./images/20210725152613.png)
-
-# 安裝better-scroll
-
-官網
-
-https://better-scroll.github.io/docs/zh-CN/guide/
-
-![image](./images/20210725153913.png)
-
-```bash
-npm i better-scroll --save
-```
-
-![image](./images/20210725154105.png)
-
-# 安裝axios
-
-```bash
-npm install --save axios
-```
-
-![image](./images/20210725154923.png)
-# 更換預覽小圖
-
-![image](./images/20210725160338.png)
-# 打包
-
-```bash
-npm run build
-```
-
-![image](./images/20210725160227.png)
-
-![image](./images/20210725160426.png)
-
-# 動態獲取路徑
-
-
-```html
-<link rel="icon" href="<%= BASE_URL %>favicon.ico">
-```
-
-# 首頁 - 新增導航
-## Home.vue
-
-```js
-<template>
-  <div id="home">
-      <nav-bar class="home-nav"><div slot="center">購物街</div></nav-bar>
-  </div>
-</template>
-
-<script>
-import NavBar from 'components/common/navbar/NavBar'
-
-export default {
-    name: "Home",
-    components: {
-        NavBar
-    }
-}
-</script>
-
-<style scoped>
-    .home-nav {
-        background-color: var(--color-tint);
-        color: #fff;
-    }
-</style>
-```
-
-## NavBar.vue
-
-```js
-<template>
-  <div class="nav-bar">
-      <div class="left"><slot name="left"></slot></div>
-      <div class="center"><slot name="center"></slot></div>
-      <div class="right"><slot name="right"></slot></div>
-  </div>
-</template>
-
-<script>
-export default {
-
-}
-</script>
-
-<style>
-    .nav-bar {
-        display: flex;
-        height: 44px;
-        line-height: 44px;
-        text-align: center;
-        box-shadow: 0 1px 1px rgba(100,100,100,.1);
-    }
-
-    .left, .right {
-        width: 60px;
-        /* background-color: red; */
-    }
-
-    .center {
-        flex: 1;
-        /* background-color: blue; */
-    }
-</style>
-```
-
-![image](./images/20210725165521.png)
-
-# 首頁 - 新增輪播圖
-
-組件建立完成時，請求數據
-
-## 新增home.js
-
-```js
-import { request } from "./request";
-
-export function getHomeMultidata(){
-    return request({
-        url: '/home/multidata'
-    })
-}
-```
-
-## 修改Home.vue
-
-```js
-import {getHomeMultidata} from "network/home"
-
-export default {
-    name: "Home",
-    components: {
-        NavBar
-    },
-    data(){
-        return {
-            // result: null,
-            banners: [],
-            recommends: []
-        }
-    },
-    created() {
-        // 1.請求多個數據
-        getHomeMultidata().then(res => {
-            console.log(res);
-            // this.result = res;
-            // console.log("@@@result",this.result);
-            this.banners = res.data.banner.list;
-            this.recommends = res.data.recommend.list;
-        })
-    },
-}
-```
-
-訪問得到的資料，已存放在data
-
-![image](./images/20210725201719.png)
-
-## 新增swiper
-
-直接使用封裝好的swiper組件
-
-## 新增HomeSwiper.vue
-
-將使用輪播圖的代碼，再封裝成一個組件，給Home.vue使用
-
-```js
-<template>
-  <swiper>
-          <swiper-item v-for="item in banners" :key="item">
-              <a :href="item.link">
-                  <img :src="item.image" alt="">
-              </a>
-          </swiper-item>
-      </swiper>
-</template>
-
-<script>
-import {Swiper, SwiperItem} from 'components/common/swiper'
-
-export default {
-    name: "HomeSwiper",
-    props: {
-        banners: {
-            type: Array,
-            default() {
-                return []
-            }
-        }
-    },
-    components: {
-        Swiper,
-        SwiperItem
-    },
-}
-</script>
-
-<style>
-
-</style>
-```
-
-## 修改Home.vue
-
-```js
-<template>
-  <div id="home">
-      <nav-bar class="home-nav"><div slot="center">購物街</div></nav-bar>
-      <home-swiper :banners="banners"/>
-  </div>
-</template>
-
-<script>
-import NavBar from 'components/common/navbar/NavBar'
-import HomeSwiper from './childComps/HomeSwiper'
-import {getHomeMultidata} from "network/home"
-
-export default {
-    name: "Home",
-    components: {
-        NavBar,
-        HomeSwiper
-    },
-```
-
-## 成功運行輪播圖
-
-![image](./images/20210725205211.png)
-
-# 關閉eslint
-
-因為創專案時，預設使用到eslint
-
-VSCode也裝了Vetur，會跳eslint的警告
-
-![image](./images/20210726095227.png)
-
-需要分別關閉
-
-關閉專案eslint的檢察
+增加這行
 
 ```json
-module.exports = {
-    lintOnSave:false //關閉eslint檢查
+"scripts": {
+    "lintfix": "eslint --ext .js,.vue src --fix",
+  },
+```
+
+若eslint有報錯，可以執行
+
+```bash
+npm run lintfix
+```
+
+作自動修復
+
+# 新增--open
+
+增加這行，執行npm run dev時會自動打開瀏覽器
+
+```json
+"scripts": {
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --open",
+  },
+```
+
+# 如果要關閉eslint
+
+註解掉這行即可
+
+build/webpack.base.conf.js
+
+```js
+module: {
+    rules: [
+      //...(config.dev.useEslint ? [createLintingRule()] : []),      
+    ]
+  },
+```
+
+# ElementUI官網
+
+https://element.eleme.cn/#/zh-CN
+
+![image](./images/20210808145424.png)
+
+## 安裝
+
+按照官網教學安裝並引用
+
+```bash
+npm i element-ui -S
+```
+
+![image](./images/20210808150020.png)
+
+## main.js
+
+vue_shop_admin\src\main.js
+
+```js
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(ElementUI)
+```
+
+# 新增reset.css
+
+vue_shop_admin\src\assets\css\reset.css
+
+```css
+html,
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
 ```
 
-關閉Vetur eslint的檢查
+## main.js引入
 
-![image](./images/20210726095149.png)
-
-# 首頁 - 新增 推薦信息
-
-## 新增RecommendView.vue
+vue_shop_admin\src\main.js
 
 ```js
-<template>
-  <div class="recommend">
-      <div v-for="item in recommends" class="recommend-item">
-          <a :href="item.link">
-              <img :src="item.image" alt="">
-              <div>{{item.title}}</div>
-          </a>
-      </div>
-  </div>
-</template>
+import '@/assets/css/reset.css'
+```
 
-<script>
-export default {
-    name: "RecommendView",
-    props: {
-        recommends: {
-            type: Array,
-            default() {
-                return []
-            }
-        }
-    }
+# axios
+
+安裝axios
+
+```
+npm i axios
+```
+
+![image](./images/20210808155300.png)
+
+## 參考官網插件的部分
+
+https://cn.vuejs.org/v2/guide/plugins.html#ad
+
+![image](./images/20210808171401.png)
+
+## http.js
+
+vue_shop_admin\src\plugins\http.js
+
+```js
+import axios from 'axios'
+
+const MyHttpServer = {}
+
+MyHttpServer.install = (Vue) => {
+  axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+  Vue.prototype.$http = axios
 }
-</script>
 
-<style scoped>
-    .recommend {
-        display: flex;
-        text-align: center;
-        font-size: 12px;
+export default MyHttpServer
 
-        padding: 10px 0 20px;
-        border-bottom: 10px solid #eee;
-    }
-
-    .recommend-item {
-        flex: 1
-    }
-
-    .recommend-item img {
-        width: 70px;
-        height: 70px;
-        margin-bottom: 10px;
-    }
-</style>
 ```
 
-## 修改Home.vue
+## main.js
+
+vue_shop_admin\src\main.js
+
+```js
+import MyHttpServer from '@/plugins/http.js'
+
+Vue.use(MyHttpServer)
+```
+
+# Login模塊
+
+## Login.vue
+vue_shop_admin\src\components\login\Login.vue
 
 ```js
 <template>
-  <div id="home">
-      <nav-bar class="home-nav"><div slot="center">購物街</div></nav-bar>
-      <home-swiper :banners="banners"/>
-      <recommend-view :recommends="recommends"/>
-  </div>
-</template>
-
-<script>
-import RecommendView from './childComps/RecommendView'
-
-
-export default {
-    components: {
-        RecommendView
-    },
-</script>    
-```
-
-## 推薦信息 - 運行畫面
-
-![image](./images/20210726102321.png)
-
-# 首頁 - 新增 本周流行
-
-## 新增FeatureView.vue
-
-```js
-<template>
-  <div class="feature">
-      <a href="https://act.mogujie.com/zzlx67">
-        <img src="~assets/img/home/recommend_bg.jpg" alt="">
-      </a>
+  <div class="login-wrap">
+    <el-form
+    class="login-form"
+    label-position="top"
+    label-width="80px"
+    :model="formdata">
+      <h2>用戶登入</h2>
+      <el-form-item label="用戶名">
+        <el-input v-model="formdata.username"></el-input>
+      </el-form-item>
+      <el-form-item label="密碼">
+        <el-input v-model="formdata.password"></el-input>
+      </el-form-item>
+      <el-button 
+      @click.prevent="handleLogin()"
+      class="login-btn" type="primary">登入</el-button>
+    </el-form>
   </div>
 </template>
 
 <script>
 export default {
-    name: "FeatureView"
+  data () {
+    return {
+      formdata: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+  methods: {
+    async handleLogin () {
+      const res = await this.$http.post('login', this.formdata);
+    	console.log(res)
+		const {
+			data,
+			meta: {msg,status}
+		} = res.data
+
+		if(status == 200){
+			this.$router.push({name:'home'})
+			this.$message.success(msg)
+		}else{
+			this.$message.error(msg)
+		}
+	}
+  }
 }
-</script>
-
-<style scoped>
-    .feature img {
-        width: 100%;
-    }
-</style>
-```
-
-## 修改Home.vue
-
-```js
-<template>
-  <div id="home">
-      <nav-bar class="home-nav"><div slot="center">購物街</div></nav-bar>
-      <home-swiper :banners="banners"/>
-      <recommend-view :recommends="recommends"/>
-      <feature-view/>
-
-  </div>
-</template>
-
-<script>
-import NavBar from 'components/common/navbar/NavBar'
-import HomeSwiper from './childComps/HomeSwiper'
-import RecommendView from './childComps/RecommendView'
-import FeatureView from './childComps/FeatureView'
-
-import {getHomeMultidata} from "network/home"
-
-export default {
-    name: "Home",
-    components: {
-        NavBar,
-        HomeSwiper,
-        RecommendView,
-        FeatureView
-    },
-    data(){  
-        return {
-            // result: null,
-            banners: [],
-            recommends: []
-        }
-    },
-    created() {
-        // 1.請求多個數據
-        getHomeMultidata().then(res => {
-            console.log(res);
-            // this.result = res;
-            // console.log("@@@result",this.result);
-            this.banners = res.data.banner.list;
-            this.recommends = res.data.recommend.list;
-        })
-    },
-}
-</script>
-
-<style scoped>
-    #home {
-        /* 留標頭的空間 */
-        padding-top: 44px;
-    }
-
-    .home-nav {
-        background-color: var(--color-tint);
-        color: #fff;
-
-        /* 解決標頭一起滾動的問題 */
-        position: fixed;    
-        left: 0;
-        right: 0;
-        top: 0;
-        z-index: 9;
-    }
-</style>
-```
-
-
-新增列表假資料，方便滑動
-
-```js
-ul>li{列表$}*100
-```
-
-## 本週流行 - 運行畫面
-
-![image](./images/20210726162714.png)
-
-# 首頁 - 新增 TabControl功能
-
-## 新增TabControl.vue
-
-```js
-<template>
-  <div class="tab-control">
-      <div v-for="(item,index) in titles" 
-      class="tab-control-item" 
-      :class="{active: index===currentIndex}" 
-      @click="itemClick(index)">
-          <span>{{item}}</span>
-      </div>
-  </div>
-</template>
-
-<script>
-export default {
-    name: "TabControl",
-    props: {
-        titles: {
-            type: Array,
-            default() {
-                return []
-            }
-        }
-    },
-    data() {
-        return {
-            currentIndex: 0
-        }
-    },
-    methods: {
-        itemClick(index) {
-            this.currentIndex = index;
-        }
-    },
-}
-</script>
-
-<style scoped>
-    .tab-control {
-        display: flex;
-        text-align: center;
-        font-size: 15px;
-        
-        height: 40px;
-        line-height: 40px;
-        background-color: #fff;
-    }
-
-    .tab-control-item {
-        flex: 1;
-    }
-
-    .tab-control-item span {
-        padding: 5px;
-    }
-
-    .active {
-        color: var(--color-high-text);
-    }
-
-    .active span {
-        border-bottom: 3px solid var(--color-tint);
-    }
-</style>
-```
-
-## 修改Home.vue
-
-```js
-<template>
-  <div id="home">
-        <tab-control class="tab-control" :titles="['流行','新款','精選']"/>
-  </div>
-</template>
-
-<script>
-import TabControl from 'components/content/tabControl/TabControl.vue'
-
-export default {
-    name: "Home",
-    components: {
-        TabControl
-    },
-```
-
-## TabControl功能 - 運行畫面
-
-![image](./images/20210726205620.png)
-
-# 將TabControl置頂
-
-
-Home.vue
-```js
-<template>
-  <div id="home">
-      <tab-control class="tab-control" :titles="['流行','新款','精選']"/>
-  </div>
-</template>
-
-<script>
 
 </script>
 
-<style scoped>
+<style>
+.login-wrap {
+  height: 100%;
+  background-color: #324152;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-    /* 鎖定TabControl的位置 */
-    .tab-control {
-        position: sticky;
-        top: 44px;
-    }
+.login-wrap .login-form {
+  width: 400px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+.login-wrap .login-btn {
+  width: 100%;
+}
+</style>
+
+```
+
+## index.js
+
+vue_shop_admin\src\router\index.js
+
+```js
+import Vue from 'vue'
+import Router from 'vue-router'
+import Login from '@/components/login/Login'
+import Home from '@/components/home/Home'
+
+Vue.use(Router)
+
+export default new Router({
+  routes: [
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
+    },
+  ]
+})
+```
+
+## Home.vue
+
+vue_shop_admin\src\components\home\Home.vue
+
+```js
+<template>
+  <div>home</div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
 </style>
 ```
 
-設定好之後Tab即會固定在上方固定的位置，當y值到上方44px時，即不受滾動影響
+## Login模塊 運行畫面
 
-# 打包上Github Pages
 
-需修改vue.config.js的設定
+![image](./images/20210808172154.png)
 
-新增這項設定
+錯誤提示
+
+![image](./images/20210808172202.png)
+
+輸入正確，轉向home模塊
+
+![image](./images/20210808172211.png)
+
+服務器回傳的信息
+
+![image](./images/20210808172223.png)
+
+# 更換一下favicon.ico
+
+在static目錄放入要更新的favicon.ico
+
+vue_shop_admin\static\favicon.ico
+
+![image](./images/20210912123720.png)
+
+在index.html加入此行
 
 ```js
-module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-    ? '/Vue_SuperMall/'
-    : '/'
-
-}
+<link rel ="shortcut icon" type="image/x-icon" href="static/favicon.ico">
 ```
 
-Vue_SuperMall為github專案名稱
+![image](./images/20210912123507.png)
+
+更新成功
+
+![image](./images/20210912123751.png)
+
+# 安裝vue-format
+
+![image](./images/20210912144401.png)
+
+![image](./images/20210912144519.png)
 
 
+# Home模塊
+
+相關組件
+
+Container 布局容器
+
+https://element.eleme.cn/#/zh-CN/component/container
+
+Layout 布局
+
+https://element.eleme.cn/#/zh-CN/component/layout
+
+NavMenu 导航菜单
+
+https://element.eleme.cn/#/zh-CN/component/menu#menu-group-attribute
+
+Icon 图标
+
+https://element.eleme.cn/#/zh-CN/component/icon#tu-biao-ji-he
+
+## index.js
+
+vue_shop_admin\src\router\index.js
+
+```js
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: Home
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: Home
+    },
+  ]
+})
+```
+
+## Home.vue
+
+vue_shop_admin\src\components\home\Home.vue
+
+```js
+<template>
+<el-container class="container">
+    <el-header class="header">
+        <el-row>
+            <el-col :span="4" class="left">
+                <div class="grid-content bg-purple">
+                    <img src="../../assets/logo.png" alt="無法顯示圖片">
+                </div>
+            </el-col>
+            <el-col :span="18" class="middle">
+                <div class="grid-content bg-purple-light">
+                    <h3>電商後台管理系統</h3>
+                </div>
+            </el-col>
+            <el-col :span="2">
+                <div class="grid-content bg-purple">
+                    <a class="loginout" @click.prevent="handleSingout" href="#">退出</a>
+                </div>
+            </el-col>
+        </el-row>
+    </el-header>
+    <el-container>
+        <el-aside class="aside" width="200px">
+            <el-menu
+            :unique-opened="true"
+            >
+                <el-submenu index="1">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>用戶管理</span>
+                    </template>
+                    <el-menu-item index="1-1">
+                        <i class="el-icon-success"></i>
+                        <span>用戶列表</span>
+                    </el-menu-item>
+                </el-submenu>
+                <el-submenu index="2">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>權限管理</span>
+                    </template>
+                    <el-menu-item index="1-1">
+                        <i class="el-icon-location"></i>
+                        <span>角色列表</span>
+                    </el-menu-item>
+                    <el-menu-item index="1-1">
+                        <i class="el-icon-location"></i>
+                        <span>權限列表</span>
+                    </el-menu-item>
+                </el-submenu>
+                <el-submenu index="3">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>商品管理</span>
+                    </template>
+                    <el-menu-item index="1-1">
+                        <i class="el-icon-location"></i>
+                        <span>商品列表</span>
+                    </el-menu-item>
+                    <el-menu-item index="1-1">
+                        <i class="el-icon-location"></i>
+                        <span>分類參數</span>
+                    </el-menu-item>
+                    <el-menu-item index="1-1">
+                        <i class="el-icon-location"></i>
+                        <span>商品分類</span>
+                    </el-menu-item>
+                </el-submenu>
+                <el-submenu index="4">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>訂單管理</span>
+                    </template>
+                    <el-menu-item index="1-1">
+                        <i class="el-icon-location"></i>
+                        <span>选项1</span>
+                    </el-menu-item>
+                </el-submenu>
+                <el-submenu index="5">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>數據統計</span>
+                    </template>
+                    <el-menu-item index="1-1">
+                        <i class="el-icon-location"></i>
+                        <span>选项1</span>
+                    </el-menu-item>
+                </el-submenu>
+
+            </el-menu>
+        </el-aside>
+        <el-main class="main">Main</el-main>
+    </el-container>
+</el-container>
+</template>
+
+<script>
+export default {
+  
+  beforeCreate() {
+    const token = localStorage.getItem('token')
+
+    if(!token){
+      this.$router.push({name:'login'})
+    }
+  },
+
+  methods: {
+    handleSingout() {
+      localStorage.clear()
+      this.$message.success('退出成功')
+      this.$router.push({name:'login'})
+    }
+  },
+}
+</script>
+
+<style>
+.container {
+    height: 100%;
+}
+
+.header {
+    background-color: #b3c0d1;
+}
+
+.aside {
+    background-color: #d3dce6;
+}
+
+.main {
+    background-color: #e9eef3;
+}
+
+.left img {
+    height: 60px;
+}
+
+.middle {
+    text-align: center;
+}
+
+.loginout {
+    text-decoration: none;
+    line-height: 60px;
+}
+</style>
+
+```
+
+
+## Home模塊 運行畫面
+
+
+![image](./images/20210912155444.png)
+
+# 用戶管理模塊 Users.vue
+
+相關組件
+
+Card 卡片
+
+https://element.eleme.cn/#/zh-CN/component/card#attributes
+
+Breadcrumb 面包屑
+
+https://element.eleme.cn/#/zh-CN/component/breadcrumb#breadcrumb-mian-bao-xie
+
+
+Input 输入框
+
+https://element.eleme.cn/#/zh-CN/component/input
+
+
+Button 按钮
+
+https://element.eleme.cn/#/zh-CN/component/button#bu-tong-chi-cun
+
+Table 表格
+
+https://element.eleme.cn/#/zh-CN/component/table#table-column-scoped-slot
+
+
+Switch 开关
+
+https://element.eleme.cn/#/zh-CN/component/switch#methods
+
+Pagination 分页
+
+https://element.eleme.cn/#/zh-CN/component/pagination#events
+
+axios中文說明
+
+https://www.kancloud.cn/yunye/axios/234845
+
+## 安裝moment
+
+```bash
+npm i moment
+```
+
+![image](./images/20210912193650.png)
+
+## 用戶列表 完成畫面
+
+![image](./images/20210912205626.png)
