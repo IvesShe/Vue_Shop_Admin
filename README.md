@@ -4,10 +4,114 @@
 
 搭配ElementUI
 
-(開發中)
-
 ![image](./images/20210912205626.png)
 
+# 使用技術
+
+- Vue2
+- vue-router
+- element-ui
+- element-tree-grid
+- axios
+- vue-quill-editor
+- moment
+- echarts
+
+# 頁面展示
+
+首頁
+
+![image](./images/20211227141033.png)
+
+用戶列表
+
+![image](./images/20211227141038.png)
+
+添加用戶
+
+![image](./images/20211227141158.png)
+
+編輯用戶
+
+![image](./images/20211227141043.png)
+
+刪除用戶
+
+![image](./images/20211227141047.png)
+
+分配角色
+
+![image](./images/20211227141053.png)
+
+角色列表
+
+![image](./images/20211227141100.png)
+
+角色列表-展開
+
+![image](./images/20211227141116.png)
+
+修改權限
+
+![image](./images/20211227141126.png)
+
+權限列表
+
+![image](./images/20211227141137.png)
+
+商品列表
+
+![image](./images/20211227141143.png)
+
+添加商品-基本信息-step1
+
+![image](./images/20211227141218.png)
+
+添加商品-商品參數-step2
+
+![image](./images/20211227141222.png)
+
+添加商品-商品屬性-step3
+
+![image](./images/20211227141230.png)
+
+添加商品-商品圖片-step4
+
+![image](./images/20211227141238.png)
+
+添加商品-商品內容-step5
+
+![image](./images/20211227141243.png)
+
+分類參數
+
+![image](./images/20211227141254.png)
+
+商品分類
+
+![image](./images/20211227141303.png)
+
+添加分類
+
+![image](./images/20211227141308.png)
+
+![image](./images/20211227141314.png)
+
+商品分類-展開
+
+![image](./images/20211227141319.png)
+
+訂單列表
+
+![image](./images/20211227141333.png)
+
+修改訂單地址
+
+![image](./images/20211227141341.png)
+
+數據報表
+
+![image](./images/20211227141347.png)
 # 前置工作
 
 這是一個前後端的完整項目
@@ -352,6 +456,11 @@ export default {
 
 輸入正確，轉向home模塊
 
+```js
+帳號：admin
+密碼：123456
+```
+
 ![image](./images/20210808172211.png)
 
 服務器回傳的信息
@@ -642,3 +751,34 @@ npm i moment
 ## 用戶列表 完成畫面
 
 ![image](./images/20210912205626.png)
+
+
+# Vue資源
+
+https://github.com/vuejs/awesome-vue#rich-text-editing
+
+https://curated.vuejs.org/
+
+# 富文本編輯器
+
+```bash
+npm install vue-quill-editor --save
+```
+
+# 安裝element-tree-grid
+
+https://www.npmjs.com/package/element-tree-grid
+
+```bash
+npm install element-tree-grid --save
+```
+
+# ECharts
+
+https://echarts.apache.org/zh/index.html
+
+安裝ECharts
+
+```bash
+npm install echarts --save
+```
